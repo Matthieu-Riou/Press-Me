@@ -1,7 +1,8 @@
 #include "Button.h"
 #include "Espace.h"
+#include "Actions/Nothing.h"
 
-Button::Button(std::string texte, sf::Vector2f pos, sf::RenderWindow *parent) : marge_(20, 20), parent_(parent), action_(NULL), pressed(false)
+Button::Button(std::string texte, sf::Vector2f pos, sf::RenderWindow *parent) : marge_(20, 20), parent_(parent), action_(new Default_Action::Nothing()), pressed(false)
 {	
 	font_.loadFromFile("Font/LiberationSans-Regular.ttf");
 	texte_.setString(texte);

@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <string>
-#include "Action.h"
+#include "Actions/Action.h"
 
 class Button
 {

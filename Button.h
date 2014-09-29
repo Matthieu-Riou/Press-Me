@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <string>
+#include "Action.h"
 
 class Button
 {
@@ -13,14 +14,19 @@ class Button
 		sf::Vector2f marge_;
 		
 		sf::RenderWindow *parent_;
+
+		Action* action_;
+		bool pressed;
 		
 	public:
 		Button(std::string texte, sf::Vector2f pos, sf::RenderWindow *parent = NULL);
 
+		virtual void setAction(Action* action);
 		virtual void setParent(sf::RenderWindow *parent);		
 		
 		virtual void autosize();
 		
+		virtual void update();
 		virtual void afficher() const;
 
 };

@@ -1,6 +1,7 @@
 #include "Button.h"
+#include "Espace.h"
 
-Button::Button(std::string texte, sf::Vector2f pos, sf::RenderWindow *parent) : marge_(20, 20), parent_(parent)
+Button::Button(std::string texte, sf::Vector2f pos, sf::RenderWindow *parent) : marge_(20, 20), parent_(parent), action_(NULL), pressed(false)
 {	
 	font_.loadFromFile("Font/LiberationSans-Regular.ttf");
 	texte_.setString(texte);
@@ -12,6 +13,11 @@ Button::Button(std::string texte, sf::Vector2f pos, sf::RenderWindow *parent) : 
 	zone_.setOutlineColor(sf::Color(250, 150, 100));
 	
 	autosize();
+}
+
+void Button::setAction(Action* action)
+{
+	action_ = action;
 }
 
 void Button::setParent(sf::RenderWindow* parent)
@@ -26,7 +32,30 @@ void Button::autosize()
 	zone_.setSize(sf::Vector2f(rect.width + 2*marge_.x, rect.height + 2*marge_.y));
 	zone_.setFillColor(sf::Color::Blue);
 }
+
+void Button::update()
+{
+	//Si la souris sort du bouton, sans avoir relâché le clic
+	if(pressed && sf::Mouse::isButtonPressed(sf::Mouse::Left) && !Espace::estDans(sf::Mouse::getPosition(*parent_), zone_))
+	{
+		pressed = false;
+		zone_.setOutlineColor(sf::Color(250, 150, 100));
+	}
+	//Si on relâche le clic dans le bouton
+	else if(pressed && !sf::Mouse::isButtonPressed(sf::Mouse::Left)) //estDans
+	{
+		pressed = false;
+		zone_.setOutlineColor(sf::Color(250, 150, 100));
+		(*action_)();
+	}
+	//Si on presse le clic dans le bouton
+	else if(!pressed && sf::Mouse::isButtonPressed(sf::Mouse::Left) && Espace::estDans(sf::Mouse::getPosition(*parent_), zone_))
+	{
+		pressed = true;
+		zone_.setOutlineColor(sf::Color(250, 100, 100));
+	}
 	
+}
 
 void Button::afficher() const
 {

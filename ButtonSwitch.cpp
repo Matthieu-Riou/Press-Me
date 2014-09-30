@@ -8,10 +8,9 @@ ButtonSwitch::ButtonSwitch(std::string texte, sf::Vector2f pos, sf::RenderWindow
 		off_(new Default_Action::Nothing()), 
 		pressed_(false), 
 		active_(false),
-		colorDefaut(sf::Color(250, 150, 100)),
-		colorActive(sf::Color(250, 50, 100)),
-		colorPressed(sf::Color(250, 100, 100)),
-		colorPressedActive(sf::Color(250, 0, 100))
+		colorActive_(sf::Color(250, 50, 100)),
+		colorPressed_(sf::Color(250, 100, 100)),
+		colorPressedActive_(sf::Color(250, 0, 100))
 {}
 
 void ButtonSwitch::setActionOn(Action* on)
@@ -32,9 +31,9 @@ void ButtonSwitch::update()
 		pressed_ = false;
 
 		if(active_)
-			zone_.setOutlineColor(colorActive);
+			zone_.setOutlineColor(colorActive_);
 		else
-			zone_.setOutlineColor(colorDefaut);
+			zone_.setOutlineColor(colorDefaut_);
 	}
 	//Si on relâche le clic dans le bouton
 	else if(pressed_ && !sf::Mouse::isButtonPressed(sf::Mouse::Left)) //estDans
@@ -45,13 +44,13 @@ void ButtonSwitch::update()
 		{
 			active_ = false;
 			(*off_)();
-			zone_.setOutlineColor(colorDefaut);
+			zone_.setOutlineColor(colorDefaut_);
 		}
 		else
 		{
 			active_ = true;
 			(*on_)();
-			zone_.setOutlineColor(colorActive);
+			zone_.setOutlineColor(colorActive_);
 		}
 	}
 	//Si on presse le clic dans le bouton
@@ -60,9 +59,9 @@ void ButtonSwitch::update()
 		pressed_ = true;
 
 		if(active_)
-			zone_.setOutlineColor(colorPressedActive);
+			zone_.setOutlineColor(colorPressedActive_);
 		else
-			zone_.setOutlineColor(colorPressed);
+			zone_.setOutlineColor(colorPressed_);
 	}
 	
 }

@@ -1,6 +1,6 @@
 #include "AbstractButton.h"
 
-AbstractButton::AbstractButton(std::string texte, sf::Vector2f pos, sf::RenderWindow *parent) : marge_(20, 20), parent_(parent)
+AbstractButton::AbstractButton(std::string texte, sf::Vector2f pos, sf::RenderWindow *parent) : marge_(20, 20), parent_(parent), colorDefaut_(sf::Color(250, 150, 100))
 {	
 	font_.loadFromFile("Font/LiberationSans-Regular.ttf");
 	texte_.setString(texte);
@@ -9,7 +9,7 @@ AbstractButton::AbstractButton(std::string texte, sf::Vector2f pos, sf::RenderWi
 	
 	zone_.setPosition(pos);
 	zone_.setOutlineThickness(5);
-	zone_.setOutlineColor(sf::Color(250, 150, 100));
+	zone_.setOutlineColor(colorDefaut_);
 	
 	autosize();
 }

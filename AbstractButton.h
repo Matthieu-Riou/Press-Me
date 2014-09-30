@@ -13,6 +13,8 @@ class AbstractButton
 		sf::Vector2f marge_;
 		
 		sf::RenderWindow *parent_;
+
+		sf::Color colorDefaut_;
 		
 	public:
 		AbstractButton(std::string texte, sf::Vector2f pos, sf::RenderWindow *parent = NULL);

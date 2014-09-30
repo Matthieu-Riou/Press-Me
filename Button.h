@@ -10,6 +10,8 @@ class Button : public AbstractButton
 	protected:
 		Action* action_;
 		bool pressed_;
+
+		sf::Color colorPressed_;
 		
 	public:
 		Button(std::string texte, sf::Vector2f pos, sf::RenderWindow *parent = NULL);

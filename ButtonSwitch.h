@@ -13,10 +13,9 @@ class ButtonSwitch : public AbstractButton
 		bool pressed_;
 		bool active_;
 
-		sf::Color colorDefaut;
-		sf::Color colorActive;
-		sf::Color colorPressed;
-		sf::Color colorPressedActive;
+		sf::Color colorActive_;
+		sf::Color colorPressed_;
+		sf::Color colorPressedActive_;
 
 	public:
 		ButtonSwitch(std::string texte, sf::Vector2f pos, sf::RenderWindow *parent = NULL);

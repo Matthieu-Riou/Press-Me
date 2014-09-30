@@ -2,7 +2,6 @@
 #define Button_H
 
 #include <SFML/Graphics.hpp>
-#include <string>
 #include "AbstractButton.h"
 #include "Actions/Action.h"
 
@@ -10,7 +9,7 @@ class Button : public AbstractButton
 {
 	protected:
 		Action* action_;
-		bool pressed;
+		bool pressed_;
 		
 	public:
 		Button(std::string texte, sf::Vector2f pos, sf::RenderWindow *parent = NULL);

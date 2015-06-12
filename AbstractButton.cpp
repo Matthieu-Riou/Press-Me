@@ -27,6 +27,11 @@ void AbstractButton::autosize()
 	zone_.setFillColor(sf::Color::Blue);
 }
 
+sf::Vector2f AbstractButton::getSize() const
+{
+  return zone_.getSize();
+}
+
 void AbstractButton::afficher() const
 {
 	parent_->draw(zone_);

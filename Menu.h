@@ -16,6 +16,7 @@ class Menu
     
     sf::RectangleShape zone_;
 		sf::Vector2f marge_;
+		float margeIntern_;
 
   public:
     Menu(sf::Vector2f pos, sf::RenderWindow *parent = NULL);

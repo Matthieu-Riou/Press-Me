@@ -19,6 +19,11 @@ void AbstractButton::setParent(sf::RenderWindow* parent)
 	parent_ = parent;
 }
 
+void AbstractButton::setPosition(sf::Vector2f pos)
+{
+  zone_.setPosition(pos);
+}
+
 void AbstractButton::autosize()
 {
 	sf::FloatRect rect = texte_.getLocalBounds();

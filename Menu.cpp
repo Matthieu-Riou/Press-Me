@@ -1,7 +1,6 @@
 #include "Menu.h"
-#include <iostream>
 
-Menu::Menu(sf::Vector2f pos, sf::RenderWindow *parent) : parent_(parent), buttons_(), colorBorder_(sf::Color(250, 150, 100)), marge_(20, 20)
+Menu::Menu(sf::Vector2f pos, sf::RenderWindow *parent) : parent_(parent), buttons_(), colorBorder_(sf::Color(250, 150, 100)), marge_(20, 20), margeIntern_(15)
 {	
 	zone_.setPosition(pos);
 	zone_.setOutlineThickness(5);
@@ -17,7 +16,16 @@ void Menu::setParent(sf::RenderWindow* parent)
 
 void Menu::addButton(AbstractButton* button)
 {
+  float posX;
+  if(buttons_.empty())
+    posX = zone_.getPosition().x + zone_.getSize().x - marge_.x;
+  else
+    posX = zone_.getPosition().x + zone_.getSize().x - marge_.x + margeIntern_;
+    
   buttons_.push_back(button);
+  button->setPosition(sf::Vector2f(posX, zone_.getPosition().y + marge_.y));
+  button->autosize();
+  
   autosize();
 }
 
@@ -47,18 +55,20 @@ void Menu::autosize()
 {
   sf::Vector2f size;
   
-  std::cout << "1" << size.x << " - " << size.y << std::endl;
-  
   std::list<AbstractButton*>::const_iterator it;
   
   for(it = buttons_.begin(); it != buttons_.end(); ++it)
   {
-    std::cout << "a" << std::endl;
-    size+=(*it)->getSize();
+    size.x += (*it)->getSize().x;
+    size.y = std::max(size.y, (*it)->getSize().y);
   }
   
-  std::cout << size.x << " - " << size.y << std::endl;
-  
-	zone_.setSize(sf::Vector2f(size.x + 2*marge_.x, size.y + 2*marge_.y));
+  float totalMargeIntern;
+  if(buttons_.empty())
+    totalMargeIntern = 0;
+  else
+    totalMargeIntern = (buttons_.size()-1)*margeIntern_;
+    
+	zone_.setSize(sf::Vector2f(size.x + 2*marge_.x + totalMargeIntern, size.y + 2*marge_.y));
 	zone_.setFillColor(sf::Color::White);
 }

@@ -23,6 +23,8 @@ class AbstractButton
 		
 		virtual void autosize();
 		
+		virtual void setPosition(sf::Vector2f pos);
+		
 		virtual sf::Vector2f getSize() const;
 		
 		virtual void update() = 0;

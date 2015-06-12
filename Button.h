@@ -7,18 +7,18 @@
 
 class Button : public AbstractButton
 {
-	protected:
-		Action* action_;
-		bool pressed_;
+  protected:
+    Action* action_;
+    bool pressed_;
 
-		sf::Color colorPressed_;
-		
-	public:
-		Button(std::string texte, sf::Vector2f pos, sf::RenderWindow *parent = NULL);
+    sf::Color colorPressed_;
 
-		virtual void setAction(Action* action);	
-		
-		virtual void update();
+  public:
+    Button(std::string texte, sf::Vector2f pos, sf::RenderWindow *parent = NULL);
+
+    virtual void setAction(Action* action);	
+
+    virtual void update();
 
 };
 

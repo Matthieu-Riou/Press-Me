@@ -4,8 +4,8 @@
 /*Classe abstraite définissant une action*/
 class Action
 {
-	public:
-		virtual void  operator() () const = 0;
+  public:
+    virtual void  operator() () const = 0;
 };
 
 

@@ -2,6 +2,6 @@
 
 void Default_Action::Nothing::operator() () const
 {
-	//ne fais rien
+  //ne fais rien
 }
 

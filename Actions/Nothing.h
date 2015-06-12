@@ -5,11 +5,11 @@
 
 namespace Default_Action
 {
-	class Nothing : public Action
-	{
-		public:
-			virtual void  operator() () const;
-	};
+  class Nothing : public Action
+  {
+    public:
+      virtual void  operator() () const;
+  };
 }
 
 #endif //NOTHING_H
